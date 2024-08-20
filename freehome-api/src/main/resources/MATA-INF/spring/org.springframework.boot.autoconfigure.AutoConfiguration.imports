@@ -1,0 +1,2 @@
+com.freehome.api.factory.RemoteLogFallbackFactory
+com.freehome.api.factory.RemoteUserFallbackFactory

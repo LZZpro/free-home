@@ -1,0 +1,214 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.freehome</groupId>
+  <artifactId>FreeAnimeHome</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>FreeAnimeHome</name>
+  <url>http://www.FreeHome.com</url>
+  <description>自由动漫之家</description>
+  <packaging>pom</packaging>
+  <properties>
+      <freehome.version>1.0-SNAPSHOT</freehome.version>
+      <java.version>17</java.version>
+      <spring-boot.version>2.7.18</spring-boot.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <spring-cloud.version>2021.0.8</spring-cloud.version>
+      <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+      <pagehelper.boot.version>2.0.0</pagehelper.boot.version>
+      <transmittable-thread-local.version>2.14.4</transmittable-thread-local.version>
+      <fastjson.version>2.0.43</fastjson.version>
+      <jjwt.version>0.9.1</jjwt.version>
+      <commons.io.version>2.13.0</commons.io.version>
+      <freehome.version>1.0-SNAPSHOT</freehome.version>
+      <hibernate.version>6.6.0.Final</hibernate.version>
+  </properties>
+
+  <modules>
+    <module>FreeAnimeHomeServer</module>
+    <module>FreeAnimeHomeAdmin</module>
+    <module>FreeHomeGateWay</module>
+    <module>freehome-auth</module>
+    <module>freehome-api</module>
+    <module>freehome-common</module>
+
+  </modules>
+
+  <dependencyManagement>
+       <dependencies>
+
+     <!--   hibernate 框架    -->
+           <dependency>
+             <groupId>org.hibernate.orm</groupId>
+             <artifactId>hibernate-platform</artifactId>
+             <version>${hibernate.version}</version>
+             <type>pom</type>
+             <scope>import</scope>
+           </dependency>
+
+
+         <!-- SpringCloud 微服务 -->
+         <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-dependencies</artifactId>
+           <version>${spring-cloud.version}</version>
+           <type>pom</type>
+           <scope>import</scope>
+         </dependency>
+
+         <!-- SpringCloud Alibaba 微服务 -->
+         <dependency>
+           <groupId>com.alibaba.cloud</groupId>
+           <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+           <version>${spring-cloud-alibaba.version}</version>
+           <type>pom</type>
+           <scope>import</scope>
+         </dependency>
+
+
+         <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-dependencies</artifactId>
+           <version>${spring-boot.version}</version>
+           <type>pom</type>
+           <scope>import</scope>
+         </dependency>
+
+         <!-- pagehelper 分页插件 -->
+         <dependency>
+           <groupId>com.github.pagehelper</groupId>
+           <artifactId>pagehelper-spring-boot-starter</artifactId>
+           <version>${pagehelper.boot.version}</version>
+         </dependency>
+
+         <!-- JSON 解析器和生成器 -->
+         <dependency>
+           <groupId>com.alibaba.fastjson2</groupId>
+           <artifactId>fastjson2</artifactId>
+           <version>${fastjson.version}</version>
+         </dependency>
+
+         <!-- JWT -->
+         <dependency>
+           <groupId>io.jsonwebtoken</groupId>
+           <artifactId>jjwt</artifactId>
+           <version>${jjwt.version}</version>
+         </dependency>
+
+         <!-- 线程传递值 -->
+         <dependency>
+           <groupId>com.alibaba</groupId>
+           <artifactId>transmittable-thread-local</artifactId>
+           <version>${transmittable-thread-local.version}</version>
+         </dependency>
+
+         <!-- 核心模块 -->
+         <dependency>
+           <groupId>com.freehome</groupId>
+           <artifactId>freehome-common-core</artifactId>
+           <version>${freehome.version}</version>
+         </dependency>
+
+         <!-- io常用工具类 -->
+         <dependency>
+           <groupId>commons-io</groupId>
+           <artifactId>commons-io</artifactId>
+           <version>${commons.io.version}</version>
+         </dependency>
+
+       </dependencies>
+  </dependencyManagement>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+      </dependency>
+
+    </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
+
+      <resources>
+          <resource>
+              <directory>src/main/java</directory>
+              <includes>
+                  <include>**/*./xml</include>
+              </includes>
+          </resource>
+
+          <resource>
+               <directory>src/main/resource</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                </includes>
+          </resource>
+      </resources>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>public</id>
+      <name>aliyun nexus</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>public</id>
+      <name>aliyun nexus</name>
+      <url>https://maven.aliyun.com/repository/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>snapshots</name>
+      <url>http://XXXXXXXXXXXXX/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>

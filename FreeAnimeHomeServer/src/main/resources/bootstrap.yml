@@ -1,0 +1,41 @@
+server:
+  port: 8886
+  servlet:
+    context-path: /home
+spring:
+  application:
+    name: free-home-server # 如果要使用nacos上的配置文件，nacos上的配置文件一定要有free-home-server这个名字
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      # 这将更新数据库模式以匹配实体类的更改。如果表已经存在，Hibernate将更新它们以匹配实体类；如果表不存在，Hibernate将创建它们。这是在开发过程中进行数据库迁移的常用方法。
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect  #不加这句则默认为myisam引擎
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/free_home?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: Lz234#324
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+#        file-extension: yml
+#        shared-configs:
+#          dataId: free-home-server.yml
+#          refresh: true
+  servlet:
+    multipart:
+      max-file-size: 1000MB #文件上传大小
+      max-request-size: 1000MB
+
+
+  hadoop:
+    fs-uri: hdfs://hadoop102:9000  #要和 core-site.xml 里面的标签属性值一致

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: free-home-server
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        shared-configs:
+          dataId: free-home-server-dev.yaml
+          refresh: true
