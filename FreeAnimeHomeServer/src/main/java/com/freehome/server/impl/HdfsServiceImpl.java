@@ -352,7 +352,7 @@ public class HdfsServiceImpl implements IHdfsService {
         FSDataInputStream inputStream = fileSystem.open(srcPath);
 
         // 每次返回的最大数据块大小
-        long partLen = 1024 * 1024 * 4;
+        long partLen = 1024 * 1024 * 2;
         byte[] buffer = new byte[(int) partLen];
 
         // 计算本次返回的数据范围 [start, end]
@@ -382,23 +382,23 @@ public class HdfsServiceImpl implements IHdfsService {
         if (end >= fileLen) {
             end = fileLen - 1;
         }
-        // 计算本次返回的数据块大小
-        long contentLength = end - start + 1;
-        // 随机寻址 定位数据块头
-        inputStream.seek(start);
-        // 读取数据到缓冲区
-        int bytesRead = inputStream.read(buffer, 0, (int) contentLength);
         //返回码需要为206，代表只处理了部分请求，响应了部分数据
         response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
         response.setContentType("video/mp4");
         //设置此次相应返回的数据长度
-       // response.setHeader("Content-Length", String.valueOf(contentLength));
+        response.setHeader("Content-Length", String.valueOf(fileLen));
         //设置此次相应返回的数据范围
-        response.setHeader("Content-Range", "bytes=" + start + "-" + end + "/" + fileLen);
+        response.setHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLen);
         response.setHeader("Accept-Ranges", "bytes");
+        // 随机寻址 定位数据块头
+        inputStream.seek(start);
         BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
-        // 写入数据到OutputStream
-        out.write(buffer, 0, bytesRead);
+        // 读取数据到缓冲区
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1){
+            // 写入数据到OutputStream
+             out.write(buffer, 0, bytesRead);
+        }
         out.flush();
         out.close();
         inputStream.close();
