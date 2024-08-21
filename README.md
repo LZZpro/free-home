@@ -108,6 +108,8 @@ xxx:为jps命令后 NameNode所对应进程号
 
 前端页面：
 ![](FreeAnimeHomeServer/src/main/resources/images/img.png)
+视频详情：
+![](FreeAnimeHomeServer/src/main/resources/images/start.png)
 
 前端页面启动：
 
