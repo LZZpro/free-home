@@ -34,9 +34,9 @@ public class HdfsController {
 
     @GetMapping("/video/{videoId}")
     public void videoPlay(HttpServletResponse response,
-                          @PathVariable String videoId,
-                          @RequestHeader String Range) throws IOException {
-       // String rang = "bytes=20-40/20,60-80/20";
+                          @PathVariable String videoId
+                          /*@RequestHeader String Range**/) throws IOException {
+        String Range = "bytes=0-1024";
         hdfsService.videoPreview(videoId,Range,response);
     }
 
