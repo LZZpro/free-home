@@ -1,6 +1,20 @@
 FreeHome文档
 
 ----------------------------------------------
+前端页面：
+![](FreeAnimeHomeServer/src/main/resources/images/img.png)
+视频详情：
+![](FreeAnimeHomeServer/src/main/resources/images/start.png)
+
+前端页面启动：
+
+```
+npm install  # 回车
+npm start # ENTER
+```
+前端代码：https://github.com/LZZpro/free-home-ui
+
+------------------------------
 
 目前打算做下面几个功能：
 
@@ -86,7 +100,9 @@ http://lvhongqiang.com/blog426.html
 
 --------
 
-hadoop HDFS文件系统
+HDFS分布式文件系统：
+
+![](FreeAnimeHomeServer/src/main/resources/images/hdfs.png)
 
 安装参考的帖子：https://blog.csdn.net/qq_34720818/article/details/106793929，https://www.cnblogs.com/binbingg/p/15587082.html
 
@@ -96,37 +112,13 @@ hadoop HDFS文件系统
 
 立马重启docker:  systemctl restart docker
 
-
-
 jps命令查看进程
 
 netstat -ntpl | grep xxx
 
 xxx:为jps命令后 NameNode所对应进程号
 
------------------------
-
-前端页面：
-![](FreeAnimeHomeServer/src/main/resources/images/img.png)
-视频详情：
-![](FreeAnimeHomeServer/src/main/resources/images/start.png)
-
-前端页面启动：
-
-```
-npm install  # 回车
-npm start # ENTER
-```
-
-前端代码：https://github.com/LZZpro/free-home-ui
-
 --------------
-
-
-
-HDFS分布式文件系统：
-
-![](FreeAnimeHomeServer/src/main/resources/images/hdfs.png)
 
 关于：
 
