@@ -2,7 +2,7 @@ FreeHome文档
 
 ----------------------------------------------
 前端页面：
-![](FreeAnimeHomeServer/src/main/resources/images/img.png)
+![](FreeAnimeHomeServer/src/main/resources/images/home.png)
 视频详情：
 ![](FreeAnimeHomeServer/src/main/resources/images/start.png)
 
