@@ -62,7 +62,7 @@ public class HdfsController {
     }
 
     @PostMapping("/uploadVideo")
-    public R<?> uploadVideo(@RequestParam("video")MultipartFile video) throws IOException {
+    public R<?> uploadVideo(@RequestParam("video") MultipartFile video) throws IOException {
        hdfsService.uploadVideo(video);
        return R.ok("视频上传成功");
     }
