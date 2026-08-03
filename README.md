@@ -124,6 +124,4 @@ xxx:为jps命令后 NameNode所对应进程号
 
 项目在开发中，项目用了React+SpringCloud+Hibernate+HDFS。后端已经完成了登陆注册和登出接口，文件/视频上传，图片预览等功能，后续还在开发。
 
-
-![](FreeAnimeHomeServer/src/main/resources/images/chat.png)
 #   F r e e A n i m e H o m e
